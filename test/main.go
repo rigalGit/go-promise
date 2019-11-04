@@ -9,7 +9,10 @@ import "fmt"
 
 func main() {
 	fmt.Printf("start \n");
+	fmt.Printf("------------------------Testing for success return value----------------------- \n");
 	testForSuccessReturnValue();
+	time.Sleep(20 * time.Second);
+	fmt.Printf("------------------------Testing for Error return value----------------------- \n");
 	testForErrorReturnValue()
 	time.Sleep(60 * time.Second);
 }
@@ -27,9 +30,9 @@ func testForSuccessReturnValue() {
 		fmt.Println("[Then-1] Got return value ", value);
 		fmt.Println("[Then-1] Processing ", value);
 		time.Sleep(5 * time.Second);
-		fmt.Println("[Then-1] Processed ", value);
+		fmt.Println("[Then-1] Processed done", value);
 	}).Finally(func() {
-		fmt.Println("[Then-Finally-1] finally called for promise p1");
+		fmt.Println("[Then-Finally-1] finally called for promise p1 done");
 	})
 }
 
@@ -52,8 +55,8 @@ func testForErrorReturnValue() {
 		fmt.Println("[onRejected] Error handling done ");
 	}
 	p2.ThenWithErrorHandler(onFulfilled, onRejected).Catch(func(e error) {
-		fmt.Println("[onRejected-ThenWithErrorHandler] Error in catch block2", e);
+		fmt.Println("[onRejected-ThenWithErrorHandler] Error in catch block2 done", e);
 	}).Finally(func() {
-		fmt.Println("[onRejected-ThenWithErrorHandler] Finally called2");
+		fmt.Println("[onRejected-ThenWithErrorHandler] Finally called2 done");
 	})
 }
